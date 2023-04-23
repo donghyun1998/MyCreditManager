@@ -24,13 +24,12 @@ var Subject : (String, String) = ("dummy", "F")
 
 class Student
 {
-//    let name: String
-//    var grades: String
-    var student_record: Dictionary<String, String> = Dictionary<String, String>()
+    var name: String
+    var student_record: Dictionary<String, String> = Dictionary<String, String>() // subject = grade
     
-    init(subject: String, grade: String)
+    init(name: String)
     {
-        student_record[subject] = grade
+        self.name = name
     }
 }
 
@@ -40,24 +39,85 @@ func    x_cmd()
     exit(0)
 }
 
-func    add_student(students: Array<Student>)
+var students: Dictionary<String, Student> = Dictionary<String, Student>()
+
+func    add_student()
 {
-    while (true)
+    print("추가할 학생의 이름을 입력해주세요")
+    
+    let name = readLine()
+    if let str = name
     {
-        let name = readLine()
-        if let str = name
+        if students[str] == nil
         {
+            students[str] = Student(name: str)
+            print("\(str) 학생을 추가했습니다.")
         }
         else
         {
-            print("입력이 잘못되었습니다. 다시 확인해주세요.")
-            break
+            print("\(str)은 이미 존재하는 학생입니다. 추가하지 않습니다.")
         }
-        if
-        
+    }
+    else
+    {
+        print("입력이 잘못되었습니다. 다시 확인해주세요.")
+        return
     }
 }
-var students: [Student] = []
+
+func    delete_student()
+{
+    print("삭제할 학생의 이름을 입력해주세요")
+    
+    let name = readLine()
+    if let str = name
+    {
+        if students[str] == nil
+        {
+            print("\(str) 학생을 찾지 못했습니다.")
+        }
+        else
+        {
+            students[str] = nil
+            print("\(str) 학생을 삭제하였습니다.")
+        }
+    }
+    else
+    {
+        print("입력이 잘못되었습니다. 다시 확인해주세요.")
+        return
+    }
+}
+
+func    add_grade()
+{
+    print("성적을 추가할 학생의 이름, 과목 이름, 성적(A+, A, F 등)을 띄어쓰기로 구분하여 차례로 작성해주세요.")
+    print("입력예) Mickey Swift A+")
+    print("만약에 학생의 성적 중 해당 과목이 존재하면 기존 점수가 갱신됩니다.")
+    
+    let name = readLine()
+    if let str = name
+    {
+//        if students[str] == nil
+//        {
+//            print("\(str) 학생을 찾지 못했습니다.")
+//        }
+//        else
+//        {
+//            students[str] = nil
+//            print("\(str) 학생을 삭제하였습니다.")
+//        }
+    }
+    else
+    {
+        print("입력이 잘못되었습니다. 다시 확인해주세요.")
+        return
+    }
+}
+
+
+
+
 while (true)
 {
     print("원하는 기능을 입력해주세요")
@@ -67,11 +127,11 @@ while (true)
     switch input
     {
         case "1":
-            add_student(students)
+            add_student()
         case "2":
-            print("학생삭제")
+            delete_student()
         case "3":
-            print("성적추가(변경)")
+            add_grade()
         case "4":
             print("성적삭제")
         case "5":
