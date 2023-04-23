@@ -27,11 +27,10 @@ class Student
 //    let name: String
 //    var grades: String
     var student_record: Dictionary<String, String> = Dictionary<String, String>()
-
     
-    init(name: String, grade: String)
+    init(subject: String, grade: String)
     {
-        student_record[name] = grade
+        student_record[subject] = grade
     }
 }
 
