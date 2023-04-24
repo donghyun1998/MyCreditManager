@@ -7,8 +7,6 @@
 
 import Foundation
 
-var Subject : (String, String) = ("dummy", "F")
-
 class Student
 {
 	var name: String
@@ -31,7 +29,6 @@ score["C"] = 2
 score["D+"] = 1.5
 score["D"] = 1
 score["F"] = 0
-
 
 func    x_cmd()
 {
@@ -89,7 +86,7 @@ func    delete_student()
 
 func	valid_name(name: String) ->Bool
 {
-	if let str = name
+    if let str = name
 	{
 		if students[name] == nil
 		{
@@ -125,7 +122,7 @@ func    add_grade()
 	print("만약에 학생의 성적 중 해당 과목이 존재하면 기존 점수가 갱신됩니다.")
 
 	let input = readLine()
-	let	array = input.components(separatedBy: " ")
+	let	array = input!.components(separatedBy: " ")
 	if let str = input
 	{
 		if (str == nil)
@@ -133,9 +130,9 @@ func    add_grade()
 			print("입력이 잘못되었습니다. 다시 확인해주세요.")
 			return
 		}
-		if array.count == 3 && valid_name(array[0]) && valid_grade(array[2])
+        if array.count == 3 && valid_name(name: array[0]) && valid_grade(grade: array[2])
 		{
-			students[array[0]].student_record[array[1]] = array[2];
+			students[array[0]]?.student_record[array[1]] = array[2];
 		}
 	}
 	else
