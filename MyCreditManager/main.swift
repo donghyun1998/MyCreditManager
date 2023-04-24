@@ -7,19 +7,6 @@
 
 import Foundation
 
-enum   Grade: Float
-{
-	case aplus = 4.5
-	case a     = 4
-	case bplus = 3.5
-	case b     = 3
-	case cplus = 2.5
-	case c     = 2
-	case dplus = 1.5
-	case d     = 1
-	case f     = 0
-}
-
 var Subject : (String, String) = ("dummy", "F")
 
 class Student
@@ -33,13 +20,24 @@ class Student
 	}
 }
 
+var students: Dictionary<String, Student> = Dictionary<String, Student>()
+var	score: Dictionary<String, Float> = Dictionary<String, Float>()
+score["A+"] = 4.5
+score["A"] = 4
+score["B+"] = 3.5
+score["B"] = 3
+score["C+"] = 2.5
+score["C"] = 2
+score["D+"] = 1.5
+score["D"] = 1
+score["F"] = 0
+
+
 func    x_cmd()
 {
 	print("프로그램을 종료합니다...")
 	exit(0)
 }
-
-var students: Dictionary<String, Student> = Dictionary<String, Student>()
 
 func    add_student()
 {
@@ -95,18 +93,28 @@ func	valid_name(name: String) ->Bool
 	{
 		if students[name] == nil
 		{
-			print("입력이 잘못되었습니다. 다시 확인해주세요.")
 			return (false);
 		}
 		else
 		{
-			
+			return (true)
 		}
 	}
 	else
 	{
-		print("입력이 잘못되었습니다. 다시 확인해주세요.")
 		return (false);
+	}
+}
+
+func	valid_grade(grade: String) ->Bool
+{
+	if score[grade] != nil
+	{
+		return (true)
+	}
+	else
+	{
+		return (false)
 	}
 }
 
@@ -116,22 +124,17 @@ func    add_grade()
 	print("입력예) Mickey Swift A+")
 	print("만약에 학생의 성적 중 해당 과목이 존재하면 기존 점수가 갱신됩니다.")
 
-	let name = readLine()
-	let	subject = readLine()
-	let	grade = readLine()
-	if let str = name
+	let input = readLine()
+	let	array = input.components(separatedBy: " ")
+	if array.count == 3 && valid_name(array[0]) && valid_grade(array[2])
 	{
-
+		students[array[0]].student_record[array[1]] = array[2];
 	}
 	else
 	{
 		print("입력이 잘못되었습니다. 다시 확인해주세요.")
-		return
 	}
 }
-
-
-
 
 while (true)
 {
