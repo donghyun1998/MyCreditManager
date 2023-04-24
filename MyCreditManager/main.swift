@@ -126,9 +126,17 @@ func    add_grade()
 
 	let input = readLine()
 	let	array = input.components(separatedBy: " ")
-	if array.count == 3 && valid_name(array[0]) && valid_grade(array[2])
+	if let str = input
 	{
-		students[array[0]].student_record[array[1]] = array[2];
+		if (str == nil)
+		{
+			print("입력이 잘못되었습니다. 다시 확인해주세요.")
+			return
+		}
+		if array.count == 3 && valid_name(array[0]) && valid_grade(array[2])
+		{
+			students[array[0]].student_record[array[1]] = array[2];
+		}
 	}
 	else
 	{
